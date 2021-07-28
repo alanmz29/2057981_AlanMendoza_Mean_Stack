@@ -1,0 +1,1 @@
+This is a temporary file, this is how future project will be structured
