@@ -1,0 +1,60 @@
+h1{
+  color: red;
+   font-family: Helvetica;
+   background: #000000;
+ 
+}
+h2{
+  color: blue;
+  border-bottom: 2px dotted blue;
+}
+h3{
+color: #999999;
+font-family: arial, sans-serif;
+font-size: 16px;
+font-weight: bold;
+margin-top: 0px;
+margin-bottom: 1px;
+}
+h4{
+  color: yellow;
+}
+h5{
+  color: purple;
+}
+h6{
+  color: coral;
+}
+
+.header{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: darkslateblue;
+    width: 200px;
+    height: 20px;
+    padding: 20px;
+    border-bottom: 1px solid navy;
+    text-align: center;
+}
+.main{
+    width: 240px;
+    height: auto;
+    color: darkslateblue;
+    border: 3px solid slategrey;
+    border-radius: 8px;
+    text-align: center;
+}
+.footer{
+    color: darkslateblue ;
+    width: 185px;
+    height: auto;
+    padding: 20px;
+    border: 10px inset slategrey;
+    text-align: center;
+}
+div{
+  border: 2px dashed;
+  width: 246px;
+   color: slategrey ;
+}
