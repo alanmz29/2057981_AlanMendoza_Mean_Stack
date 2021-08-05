@@ -2,19 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="BloggingControl.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Simply Blogging</title>
 </head>
-<body>
-    <h1 class="display-1">Welcome To Simply Blogging</h1>
-    <hr>
+<body id = "darkTheme">
+
+    <div id = "wrapperH1">
+        <h1 id= "blue" class="display-1">Welcome To Simply Blogging</h1>
+    </div>
+
+    <hr id = "hrblue">
+
     <div id = "wrapperBody">
-    <button type="button" class="btn btn-outline-dark">Home</button>
-    <button type="button" class="btn btn-outline-dark">About Us</button>
-    <button type="button" class="btn btn-outline-dark">Contact Us</button>
-</div>
+        <button type="button" class="btn btn-outline-warning">Home</button>
+        <button  type="button" class="btn btn-outline-warning">About Us</button>
+        <button  type="button" class="btn btn-outline-warning">Contact Us</button>
+    </div>
+
+    <div id = "blue" class="form-group">
+        <label for="formGroupExampleInput">Title</label>
+        <input type="text" class="form-control" id="titleIn" placeholder="Type Tile">
+    </div>
+
+    </div>
+    <div class="form-group">
+        <label id = "blue" for="exampleFormControlTextarea1">Articles</label>
+        <textarea class="form-control" id="articleIn" rows="3"></textarea>
+    </div>
+
+    <div id = "blue" class="form-group">
+        <label for="formGroupExampleInput">Add Image</label>
+        <input type="text" class="form-control" id="imageIn" placeholder="Enter Image URL">
+    </div>
+
+
+    <table id="table">
+        <tr>
+            <td id="col1">
+                <form>
+                   <input type="button" class = "btn btn-outline-warning" value="Blog it!" onclick="appendImage()" />
+                </form>
+            </td>
+            <td id = "card"></td>
+        </tr>
+     </table>
+              
 </body>
 </html>

@@ -1,1 +1,17 @@
-#wrapperBody { width: 850px; margin: 0 auto; }
+#wrapperH1 { width: 1200px; margin: 0 auto; }
+#wrapperBody { width: 300px; margin: 0 auto; }
+#wrapperTitle { width: 40px; margin: 0 auto; }
+#wrapperBody1 { width: 200px; margin: 0 auto; }
+#darkTheme {background-color: #1f2738;}
+#blue {color: #ebb434}
+#hrblue {background-color: #ebb434;}
+
+img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+  }
+
+#table{width:100%}
+#col1{width:50%}
