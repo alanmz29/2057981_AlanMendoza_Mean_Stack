@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MyStore</title>
+    <script>var exports = {};</script>
     <script src="CartManagementControl.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     
 </head>
 <body>
-    <h2>Welcome to My Store</h2>
+    <h1>Welcome to My Store</h2>
     <div class="card-group">
         <div class="card">
             <img class="card-img-top" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-family-hero?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1604021663000" alt="Card image cap">
             <div class="card-body">
               <h4 class="card-title">iPhone 12 Pro 128GB</h4>
               <p class="card-text">$999</p>
-              <button type="button" class="btn btn-outline-dark" id = "ip12p">Buy</button>
+              <input type="button" class = "btn btn-outline-dark" value="Add to Cart" onclick="addIP12P()" />
             </div>
           </div>
           <div class="card">
@@ -25,7 +26,7 @@
             <div class="card-body">
               <h4 class="card-title">iPhone 12 128GB</h4>
               <p class="card-text">$849</p>
-              <button type="button" class="btn btn-outline-dark" id = "ip12">Buy</button>
+              <input type="button" class = "btn btn-outline-dark" value="Add to Cart" onclick="addIP12()" />
             </div>
           </div>
           <div class="card">
@@ -33,7 +34,7 @@
             <div class="card-body">
               <h4 class="card-title">iPad 128GB</h4>
               <p class="card-text">$550</p>
-              <button type="button" class="btn btn-outline-dark" id = "ip">Buy</button>
+              <input type="button" class = "btn btn-outline-dark" value="Add to Cart" onclick="addIP()" />
             </div>
           </div>
           <div class="card">
@@ -41,9 +42,11 @@
             <div class="card-body">
               <h4 class="card-title">iPhone 11 128GB</h4>
               <p class="card-text">$649</p>
-              <button type="button" class="btn btn-outline-dark" id = "ip11">Buy</button>
+              <input type="button" class = "btn btn-outline-dark" value="Add to Cart" onclick="addIP11()" />
             </div>
           </div>
       </div>
+      <h4 id="cartSize">Cart Size: 0</h4>
+      <a href="CheckOut.html" class = "btn btn-outline-dark" onclick="storeData()"> Check Out</a>
 </body>
 </html>
