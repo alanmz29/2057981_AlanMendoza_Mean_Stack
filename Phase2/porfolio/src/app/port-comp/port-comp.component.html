@@ -1,0 +1,42 @@
+<div *ngIf="showLi">
+        <h2>Login Form</h2>
+    <form #loginRef="ngForm" (ngSubmit)="checkUser(loginRef)">
+    <label>Username</label>
+    <input type="text" name="user" ngModel required minlength="2"/><br/>
+    <label>Password</label>
+    <input type="password" name="pass" ngModel required/><br/>
+    <input type="submit" value="Log in" [disabled]="!loginRef.valid"/>
+    <input type="reset" value="Clear"/><br>
+    <input type="button" value="Sign Up" (click) = "toggleLogin()"/>
+    </form>
+    <br/>
+    {{msg}}
+</div>
+
+<div *ngIf="showReg">
+    <h2>Registration form</h2>
+    <form #regRef="ngForm" (ngSubmit)="checkRegistration(regRef)">
+        <label>First Name</label>
+        <input type="text" name="fname" ngModel required minlength="2"/><br/>
+        <label>Last Name</label>
+        <input type="text" name="lname" ngModel required minlength="2"/><br/>
+        <label>Username</label>
+        <input type="text" name="userreg" ngModel required minlength="2"/><br/>
+        <label>Password</label>
+        <input type="password" name="passreg" ngModel required/><br/>
+
+        <input type="submit" value="Register" [disabled]="!regRef.valid"/>
+        <input type="reset" value="Clear"/><br>
+        <input type="button" value="Back to Login" (click) = "toggleLogin()"/>
+    </form>
+
+</div>
+
+<div *ngIf="showPort">
+    <h2>My Portfolio</h2>
+    <label>Contact Name</label>
+    <input type="text" name="cname" ngModel required minlength="2"/><br/>
+    <label>Phone No.</label>
+    <input type="text" name="pnum" ngModel required minlength="2"/><br/>
+    <input type="button" value="Log out" (click) = "toggleLogin2()"/>
+</div>
