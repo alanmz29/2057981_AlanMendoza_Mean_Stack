@@ -1,0 +1,53 @@
+<mat-form-field class="example-full-width" appearance="fill" color ="primary">
+    <mat-label>ID</mat-label>
+    <input matInput required [(ngModel)]="id"> 
+</mat-form-field>
+<br>
+<mat-form-field class="example-full-width" appearance="fill" color ="primary">
+    <mat-label>Name</mat-label>
+    <input matInput required [(ngModel)]="name"> 
+</mat-form-field>
+<br>
+<mat-form-field class="example-full-width" appearance="fill" color ="primary">
+    <mat-label>Task</mat-label>
+    <input matInput required [(ngModel)]="task"> 
+</mat-form-field>
+<br>
+<mat-form-field class="example-full-width" appearance="fill" color ="primary">
+    <mat-label>Dead Line</mat-label>
+    <input type="date" required matInput required [(ngModel)]="dLine"> 
+</mat-form-field>
+<br>
+<button mat-raised-button (click)="getInfo()">Add Task</button>
+<button mat-raised-button (click)="reset()">Reset</button>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="ID">
+      <th mat-header-cell *matHeaderCellDef> Emp ID </th>
+      <td mat-cell *matCellDef="let task"> {{task.ID}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let task"> {{task.Name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Task">
+        <th mat-header-cell *matHeaderCellDef> Task </th>
+        <td mat-cell *matCellDef="let task"> {{task.Task}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Deadline">
+        <th mat-header-cell *matHeaderCellDef> Dead Line </th>
+        <td mat-cell *matCellDef="let task"> {{task.Deadline}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+  
+  
