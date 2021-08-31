@@ -39,11 +39,6 @@ else
 }); */
 let http = require("http");
 let url = require("url");
-let loginDetail = [
-    {"user":"Raj","pass":"123"},
-    {"user":"Ramesh","pass":"567"},
-    {"user":"Raju","pass":"1100"},
-]
 let indexPage = `
             <html>
                     <head>
@@ -66,7 +61,7 @@ let addTaskPage = `
     <title>Document</title>
 </head>
 <body>
-    <h2>Login Page</h2>
+    <h2>Add Task</h2>
     <form action="checkTask">
         <label>Employee ID:</label>
         <input type="text" name="empid" required/><br/>
@@ -83,10 +78,8 @@ let addTaskPage = `
     </form>
 </body>
 </html> 
-
-
 `
-let loginPage = `
+let delTaskPage = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,42 +89,21 @@ let loginPage = `
     <title>Document</title>
 </head>
 <body>
-    <h2>Login Page</h2>
-    <form action="checkLogin">
-        <label>UserName</label>
-        <input type="text" name="user"/><br/>
-        <label>Password</label>
-        <input type="password" name="pass"/><br/>
-        <input type="submit" value="submit"/>
-       <input type="reset" value="reset"/> <br/>
-       <a href="signup">Sign Up</a>
+    <h2>Delete Task</h2>
+    <form action="findTask">
+        <label>Task ID:</label>
+        <input type="text" name="taskid" required/><br/>
+    
+        <input type="submit" value="Delete Task!"/>
+       <input type="reset" value="Reset"/> <br/>
+       <a href="index">Back</a>
     </form>
 </body>
 </html> 
 `
 
-let registerLoginPage=`
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Registration Page</h2>
-    <form action="register">
-        <label>UserName</label>
-        <input type="text" name="user"/><br/>
-        <label>Password</label>
-        <input type="password" name="pass"/><br/>
-        <input type="submit" value="submit"/>
-       <input type="reset" value="reset"/> 
-    </form>
-</body>
-</html>
-`
+let viewTaskPage=`<a href="index">Back</a>`
+
 let server = http.createServer((request,response)=> {
     let urlInfo = url.parse(request.url,true);
     if(urlInfo.path != "/favicon.ico"){
@@ -157,39 +129,56 @@ let server = http.createServer((request,response)=> {
                 response.write("The task with ID: " + taskInfo.taskid + " already exists");
             }
         }
-        else if(urlInfo.path == "/Login"){
-            response.write(loginPage);
-        }else if(urlInfo.pathname == "/checkLogin"){
-                let login = urlInfo.query;
-                let result = loginDetail.find(l=>l.user == login.user && l.pass==login.pass);
-                if(result != undefined){
-                        response.write("Successfully Login!");
-                }else {
-                        response.write("Failure try once again!");
-                }
-        }else if(urlInfo.path =="/signup"){
-                response.write(registerLoginPage);
-        }else if(urlInfo.pathname == "/register"){
-                let login = urlInfo.query;
-                let result = loginDetail.find(l=>l.user == login.user);
-                // 200 -success code , content type in header text/html
-                response.writeHead(200,{"content-type":"text/html"});
-                if(result == undefined){
-                    loginDetail.push(login);    // added user and pass in loginDetails
-                    response.write("Account Created successfully!");     
-                    response.write(loginPage);            
-                    }else {
-                        response.write("User Name must be unique!");     
-                        response.write(loginPage); 
-                }
+        else if(urlInfo.path == "/DeleteTask")
+        {
+            response.write(delTaskPage);
+        }
+        else if(urlInfo.pathname == "/findTask")
+        {
+            let tid = urlInfo.query;
+            let index = taskArray.findIndex(t=>t.taskId == tid.taskid);
+            response.writeHead(200,{"content-type":"text/html"});
+            if(index == -1 )
+            {
+                response.write(delTaskPage);
+                response.write("Could not delete task with ID: " + tid.taskid);
+            }
+            else
+            {
+                taskArray.splice(index,1);
+                fs.writeFileSync(taskDataBase,JSON.stringify(taskArray));
+                response.write(delTaskPage);
+                response.write("Deleted task with ID: " + tid.taskid +  " successfully");
+            }
+        }
+        else if(urlInfo.path =="/Viewtasks")
+        {
+            var tableStart = `<table border="1">
+            <tr>
+              <th>Employee ID</th>
+              <th>Task ID</th>
+              <th>Task</th>
+              <th>Deadline</th>
+            </tr>`
+            var tableBody = "";
+            var tableEnd = `</table>`;
+            for (let i = 0; i < taskArray.length; i++) 
+            {
+                tableBody = tableBody + `<tr>
+                                         <td>`+ taskArray[i].empId +`</td>`+
+                                         `<td>`+ taskArray[i].taskId +`</td>`+
+                                         `<td>` + taskArray[i].Task +`</td> `+
+                                         `<td>` + taskArray[i].Deadline +`</td> `+
+                                         `</tr>`
+            }
+            response.write(viewTaskPage);
+            response.write(tableStart + tableBody + tableEnd);
         }
         else {
             response.write(indexPage);  
         }
     }
-    
     response.end();
-
-})
+});
 
 server.listen(9090,()=>console.log("Server running on port number 9090"))
