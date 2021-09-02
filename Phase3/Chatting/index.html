@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+   <head><title>Chat</title></head>
+   <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+   <script>
+       var socket = io("http://localhost:3000",{transports:['websocket']});
+
+         function sendMessage()
+         {
+            socket.emit('getUser', document.getElementById('user').value);
+            socket.emit('getMsg', document.getElementById('message').value);
+            var msg = document.getElementById('message').value;
+            var user = document.getElementById('user').value;
+            
+            if(msg){
+                socket.emit('msg');
+            }
+        }
+      socket.on('newmsg', function(data){
+         if(user){
+            document.getElementById('message-container').innerHTML +='<div><b>' + "Server: " + '</b>: ' + data + '</div>'
+         }
+      })
+    </script>
+    <body>
+        <input type="text" id="user" placeholder="Enter your name!" ><br>
+        <input type="text" id="message" placeholder="Enter your message!"><br>
+        <button type="button" name="button" onclick="sendMessage()">Send</button>
+        <div id="message-container"></div>
+    </body>
+</html>
