@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+   <head><title>ChatLog</title></head>
+   <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+   <script>
+       var socket = io("http://localhost:3000",{transports:['websocket']});
+
+         function sendMessage()
+         {
+            
+            var msg = document.getElementById('message').value;
+            var user = document.getElementById('user').value;
+            
+            if(msg){
+                socket.emit('msg',{uName:user, message:msg});
+            }
+        }
+      socket.on('newmsg', function(data){
+         if(user){
+            document.getElementById('message-container').innerHTML +='<div><b>' + data.uName + '</b>: ' + data.message  + '</div>'
+         }
+      })
+    </script>
+    <body>
+        <label>Username:</label>
+        <input type="text" id="user" placeholder="Enter your name!" ><br>
+        <label>Message:</label>
+        <input type="text" id="message" placeholder="Enter your message!"><br>
+        <button type="button" name="button" onclick="sendMessage()">Send</button>
+        <div id="message-container"></div>
+    </body>
+</html>
